@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.mapper.DictMapper">
+	<resultMap id="BaseResultMap" type="com.project.entity.Dict">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="no" jdbcType="INTEGER" property="no" />
+		<result column="parent_id" jdbcType="INTEGER" property="parentId" />
+		<result column="parent_name" jdbcType="VARCHAR" property="parentName" />
+	</resultMap>
+</mapper>

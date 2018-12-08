@@ -1,0 +1,62 @@
+@CHARSET "UTF-8";
+
+.mycontainer{
+	padding: 16px;
+}
+
+.logout{
+	margin-left: 75%;
+}
+
+.page-header{
+	margin: 0;
+}
+
+.page-header h1{
+	margin-top: 0
+}
+
+
+label.myerror {
+	display: inline-block;
+	position: relative;
+	margin: 10px 0 10px 150px;
+	padding: 5px;
+	color: red;
+	border: 1px solid rgba(0, 0, 0, .2);
+	border-radius: 4px;
+}
+
+label.myerror:after {
+	content: "";
+	position: absolute;
+	top: -7px;
+	left: 10px;
+	width: 10px;
+	height: 10px;
+	border-left: 1px solid rgba(0, 0, 0, .2);
+	border-top: 1px solid rgba(0, 0, 0, .2);
+	border-top-left-radius: 4px;
+	transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	background: #fff
+}
+
+
+
+.form-group > input[type=text], .form-group > input[type=tel], 
+.form-group > input[type=number], .form-group > select {
+	width: calc(100% - 160px) !important;
+	width: -webkit-calc(100% - 160px) !important;
+	width: -moz-calc(100% - 160px) !important;
+}
+
+.btn-submit{
+	margin-top: 16px;
+	width: 150px;
+}
+
+.list-group-item:FIRST-CHILD {
+	border-top: 0;
+}

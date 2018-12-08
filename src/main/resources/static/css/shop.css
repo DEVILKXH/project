@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+.form-group{
+	width: 100%;
+	margin: 16px 0;
+}
+
+.form-group > label {
+	width: 150px;
+	text-align: center;
+}
+
+

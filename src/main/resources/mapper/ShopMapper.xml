@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.mapper.ShopMapper">
+	<resultMap id="BaseResultMap" type="com.project.entity.Shop">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="num" jdbcType="INTEGER" property="num" />
+		<result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+		<result column="parent_name" jdbcType="VARCHAR" property="parentName" />
+		<result column="money" jdbcType="INTEGER" property="money" />
+		<result column="type_id" jdbcType="VARCHAR" property="typeId" />
+		<result column="type_name" jdbcType="VARCHAR" property="typeName" />
+	</resultMap>
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.mapper.GiftsMapper">
+	<resultMap id="BaseResultMap" type="com.project.entity.Gifts">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="gift" jdbcType="VARCHAR" property="gift" />
+		<result column="vip_no" jdbcType="VARCHAR" property="vipNo" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="vip_new" jdbcType="VARCHAR" property="vipNew" />
+		<result column="vip_card_no" jdbcType="INTEGER" property="vipCardNo" />
+		<result column="vip_name" jdbcType="VARCHAR" property="vipName" />
+		<result column="card_type" jdbcType="VARCHAR" property="cardType" />
+		<result column="tel" jdbcType="VARCHAR" property="tel" />
+		<result column="birthday" jdbcType="VARCHAR" property="birthday" />
+		<result column="sex" jdbcType="VARCHAR" property="sex" />
+	</resultMap>
+</mapper>
