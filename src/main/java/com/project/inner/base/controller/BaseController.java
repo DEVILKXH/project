@@ -58,8 +58,7 @@ public class BaseController<T extends BaseEntity, S extends BaseService<T>> {
 	@RequestMapping(value = "/selectOne.do",method={RequestMethod.POST})
 	@ResponseBody
 	public T selectOne(@RequestBody T record){
-		T example =  getExample(record);
-		List<T> records = service.selectByExample(example);
+		List<T> records = service.select(record);
 		if(null == records || records.size() == 0 ){
 			return null;
 		}

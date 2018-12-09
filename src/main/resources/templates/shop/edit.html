@@ -23,9 +23,28 @@
 	<script type="text/javascript" src="/js/common.js"></script>
 	<script type="text/javascript">
 		$(function(){
+
+			getBaseDict('/a/dict/getLists.do', 'typeId');
+			getBaseDict('/a/shop/getLists.do', 'parentId');
+			
+			var url = "/a/shop/insertSelective.do";
+			var params = window.location.href.split("?");
+			if(params.length > 1){
+				var param = params[1];
+				var id = param.split("=")[1];
+				url = "/a/shop/updateSelective.do"
+				setTimeout(function(){
+					getEntity('/a/shop/selectOne.do', 'myform', id);
+				}, 1000)
+			}
+			
 			$("#myform").validate({
 				rules:{
 					
+				},
+				submitHandler: function(){
+					$submit("myform", url);
+					return false;
 				},
 				errorClass: "myerror",
 				errorContainer: "#messageBox",
@@ -37,22 +56,6 @@
 						error.insertAfter(element);
 					}
 				}
-			});
-			
-			getBaseDictTable('/a/shop/getLists.do', function(res){
-				var $table = $(".mytable"); 
-				$(res).each(function(i, item){
-					var html="<tr>" +
-								"<td>"+ item.name +"</td>" +
-								"<td>"+ item.money +"</td>" +
-								"<td>"+ (item.typeName || "") +"</td>" +
-								"<td>" +
-								"<a href='/a/shop/edit?id="+ item.id +"' class=\"btn btn-primary\">编辑</a>" +
-								"<a href='/a/shop/delete.do?id="+ item.id +"' class=\"btn btn-danger\">删除</a>" +
-								"</td>" +
-							"</tr>";
-					$table.append(html);
-				});
 			});
 		});
 	</script>
@@ -92,17 +95,32 @@
 				</ul>
 			</div>
 			<div class="col-md-10">
-				<div class="row">
-					<a href="/a/shop/edit" class="btn btn-success">新建</a>
-				</div>
-				<table class="table mytable">
-					<tr>
-						<td>商店名称</td>
-						<td>满减金额</td>
-						<td>类型</td>
-						<td>操作</td>
-					</tr>
-				</table>
+				<form class="form-inline" id="myform" name="myform">
+				  	<input type="hidden" class="form-control form-param" id="id" name="id" >
+				  	<div class="form-group">
+					    <label for="name">商店名称</label>
+					    <input type="text" class="form-control form-param" id="name" name="name" placeholder="请输入商店名称" required="required">
+					</div>
+				  	<div class="form-group">
+				    	<label for="money">满减额度</label>
+				    	<input type="number" class="form-control form-param" id="money" name="money" placeholder="请输入满减金额" required="required">
+				  	</div>
+				  	<div class="form-group">
+				    	<label for="parentName">上级店家</label>
+				    	<input type="hidden" name="parentName" id="parentName" class="form-param"/>
+				    	<select class="form-control form-param form-select" name="parentId" id="parentId">
+							<option value="">请选择</option>
+						</select>
+				  	</div>
+				  	<div class="form-group">
+				    	<label for="sex">类型</label>
+				    	<input type="hidden" name="typeName" id="typeName" class="form-param"/>
+				    	<select class="form-control form-param form-select" name="typeId" id="typeId">
+							<option value="">请选择</option>
+						</select>
+				  	</div>
+				  	<button type="submit" class="btn btn-success btn-submit">提交</button>
+				</form>
 			</div>
 		</div>		
 	</div>

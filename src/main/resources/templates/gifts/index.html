@@ -23,7 +23,8 @@
 	<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
 	<script src="/js/bootstrap-datetimepicker.min.js"></script> 
 	<script src="/js/bootstrap-datetimepicker.zh-CN.js"></script> 
-	
+	<script type="text/javascript" src="/js/common.js"></script>
+
 	<script type="text/javascript">
 		$(function(){
 			$('#birthday').datetimepicker({
@@ -42,6 +43,10 @@
 						required: true,
 						phone: true
 					}
+				},
+				submitHandler: function(){
+					$submit("myform", '/a/gifts/insertSelective.do');
+					return false;
 				},
 				errorClass: "myerror",
 				errorContainer: "#messageBox",
@@ -85,25 +90,29 @@
 				  	<li class="list-group-item">
 				  		<a href="/a/gifts">礼品领取</a>
 				  	</li>
+				  	
+				  	<li class="list-group-item">
+				  		<a href="/a/admin">报表导出</a>
+				  	</li>
 				</ul>
 			</div>
 			<div class="col-md-10">
-				<form class="form-inline" id="myform">
+				<form class="form-inline" id="myform" name="myform">
 				  	<div class="form-group">
 					    <label for="vipNo">会员号</label>
-					    <input type="text" class="form-control" id="vipNo" name="vipNo" placeholder="请输入会员号" required="required">
+					    <input type="text" class="form-control form-param" id="vipNo" name="vipNo" placeholder="请输入会员号" required="required">
 					</div>
 				  	<div class="form-group">
 				    	<label for="tel">电话号码</label>
-				    	<input type="tel" class="form-control" id="tel" name="tel" placeholder="请输入电话号码">
+				    	<input type="tel" class="form-control form-param" id="tel" name="tel" placeholder="请输入电话号码">
 				  	</div>
 				  	<div class="form-group">
 				    	<label for="birthday">出生年月</label>
-				    	<input type="text" class="form-control" id="birthday" name="birthday" placeholder="请选择出生年月" readonly="readonly" required="required">
+				    	<input type="text" class="form-control form-param" id="birthday" name="birthday" placeholder="请选择出生年月" readonly="readonly" required="required">
 				  	</div>
 				  	<div class="form-group">
 				    	<label for="sex">性别</label>
-				    	<select class="form-control" name="sex" >
+				    	<select class="form-control form-param" name="sex" id="sex">
 							<option value="男">男</option>
 						  	<option value="女">女</option>
 						</select>

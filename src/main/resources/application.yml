@@ -11,7 +11,7 @@ spring:
         default-property-inclusion: non_null
     datasource:
         name: test 
-        url: jdbc:mysql://http://39.108.12.197:3306/application?useUnicode=true&characterEncoding=UTF8
+        url: jdbc:mysql://39.108.12.197:3306/application?useUnicode=true&characterEncoding=UTF8
         username: root
         password: 123456
         # 使用druid数据源
@@ -40,5 +40,5 @@ mybatis:
     mapper-locations: "classpath*:mapper/*.xml"
 
 server:
-    port: 81
+    port: 80
         

@@ -2,14 +2,20 @@ package com.project.entity;
 
 import java.util.Date;
 
+import com.project.inner.base.annotation.ExcelColumn;
+import com.project.inner.base.annotation.ExcelTable;
 import com.project.inner.base.entity.BaseEntity;
 
+@ExcelTable(name = "礼品领取")
 public class Gifts extends BaseEntity{
-
+	
+	@ExcelColumn(name = "礼品", index = 1)
     private String gift;
 
+	@ExcelColumn(name = "会员号", index = 2)
     private String vipNo;
 
+	@ExcelColumn(name = "时间", index = 3)
     private Date createTime;
 
     private String vipNew;
@@ -25,8 +31,16 @@ public class Gifts extends BaseEntity{
     private String birthday;
 
     private String sex;
+    
+    @SuppressWarnings("unused")
+	private Gifts() {
+	}
 
-    public String getGift() {
+    public Gifts(String vipNo) {
+    	this.vipNo = vipNo;
+	}
+
+	public String getGift() {
         return gift;
     }
 

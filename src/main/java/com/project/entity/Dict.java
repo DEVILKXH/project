@@ -6,9 +6,9 @@ public class Dict extends BaseEntity{
 
     private String name;
 
-    private Integer no;
+    private String no;
 
-    private Integer parentId;
+    private String parentId;
 
     private String parentName;
 
@@ -20,19 +20,19 @@ public class Dict extends BaseEntity{
         this.name = name == null ? null : name.trim();
     }
 
-    public Integer getNo() {
+    public String getNo() {
         return no;
     }
 
-    public void setNo(Integer no) {
+    public void setNo(String no) {
         this.no = no;
     }
 
-    public Integer getParentId() {
+    public String getParentId() {
         return parentId;
     }
 
-    public void setParentId(Integer parentId) {
+    public void setParentId(String parentId) {
         this.parentId = parentId;
     }
 

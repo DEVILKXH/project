@@ -15,17 +15,44 @@
 
 	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="/css/common.css" rel="stylesheet" type="text/css">
-	<link href="/css/shop.css" rel="stylesheet" type="text/css">
+	<link href="/css/gifts.css" rel="stylesheet" type="text/css">
 	
 	<script type="text/javascript" src="/js/jquery-2.0.0.js"></script>
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
 	<script type="text/javascript" src="/js/common.js"></script>
+
 	<script type="text/javascript">
+		function calcNum(){
+			var shopId = $("#shopName").val();
+			if(isNull(shopId)){
+				return;
+			}
+			
+			getEntity('/a/shop/selectOne.do', null, shopId, function(res){
+				var typeName = res.typeName;
+				var money = res.money;
+				var couponMoney = $("#money").val();
+				if(isNull(shopId)){
+					return;
+				}
+				$("#shopType").val(typeName);
+				var num = couponMoney / money;
+				$("#num").val(Math.floor(num))
+			});
+		}
 		$(function(){
+			
+			$("#shopName").change(calcNum);
+			$("#money").change(calcNum);
+			
 			$("#myform").validate({
 				rules:{
 					
+				},
+				submitHandler: function(){
+					$submit("myform", '/a/coupon/insertSelective.do');
+					return false;
 				},
 				errorClass: "myerror",
 				errorContainer: "#messageBox",
@@ -39,21 +66,7 @@
 				}
 			});
 			
-			getBaseDictTable('/a/shop/getLists.do', function(res){
-				var $table = $(".mytable"); 
-				$(res).each(function(i, item){
-					var html="<tr>" +
-								"<td>"+ item.name +"</td>" +
-								"<td>"+ item.money +"</td>" +
-								"<td>"+ (item.typeName || "") +"</td>" +
-								"<td>" +
-								"<a href='/a/shop/edit?id="+ item.id +"' class=\"btn btn-primary\">编辑</a>" +
-								"<a href='/a/shop/delete.do?id="+ item.id +"' class=\"btn btn-danger\">删除</a>" +
-								"</td>" +
-							"</tr>";
-					$table.append(html);
-				});
-			});
+			getBaseDict('/a/shop/getLists.do', 'shopName');
 		});
 	</script>
 </head>
@@ -85,7 +98,6 @@
 				  	<li class="list-group-item">
 				  		<a href="/a/gifts">礼品领取</a>
 				  	</li>
-				  	
 				  	<li class="list-group-item">
 				  		<a href="/a/admin">报表导出</a>
 				  	</li>
@@ -93,16 +105,9 @@
 			</div>
 			<div class="col-md-10">
 				<div class="row">
-					<a href="/a/shop/edit" class="btn btn-success">新建</a>
+					<a href="/a/admin/exportCoupon.do" class="btn btn-success">整点抽</a>
+					<a href="/a/admin/exportGifts.do" class="btn btn-success">礼品领取</a>
 				</div>
-				<table class="table mytable">
-					<tr>
-						<td>商店名称</td>
-						<td>满减金额</td>
-						<td>类型</td>
-						<td>操作</td>
-					</tr>
-				</table>
 			</div>
 		</div>		
 	</div>

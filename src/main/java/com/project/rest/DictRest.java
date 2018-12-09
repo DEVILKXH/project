@@ -15,4 +15,9 @@ public class DictRest extends BaseController<Dict, DictService>{
 	public String index(){
 		return "dict/index";
 	}
+	
+	@RequestMapping(value = "/edit")
+	public String edit(){
+		return "dict/edit";
+	}
 }

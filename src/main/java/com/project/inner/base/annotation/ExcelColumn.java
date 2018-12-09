@@ -12,4 +12,5 @@ public @interface ExcelColumn {
 	String name() default "";
 	
 	int index() default 0;
+	
 }

@@ -20,6 +20,7 @@
 	<script type="text/javascript" src="/js/jquery-2.0.0.js"></script>
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="/js/common.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			$("#myform").validate({
@@ -36,6 +37,22 @@
 						error.insertAfter(element);
 					}
 				}
+			});
+			
+			getBaseDictTable('/a/dict/getLists.do', function(res){
+				var $table = $(".mytable"); 
+				$(res).each(function(i, item){
+					var html="<tr>" +
+								"<td>"+ item.no +"</td>" +
+								"<td>"+ item.name +"</td>" +
+								"<td>"+ (item.parentName || "") +"</td>" +
+								"<td>" +
+								"<a href='/a/dict/edit?id="+ item.id +"' class=\"btn btn-primary\">编辑</a>" +
+								"<a href='/a/dict/delete.do?id="+ item.id +"' class=\"btn btn-danger\">删除</a>" +
+								"</td>" +
+							"</tr>";
+					$table.append(html);
+				});
 			});
 		});
 	</script>
@@ -68,27 +85,24 @@
 				  	<li class="list-group-item">
 				  		<a href="/a/gifts">礼品领取</a>
 				  	</li>
+				  	
+				  	<li class="list-group-item">
+				  		<a href="/a/admin">报表导出</a>
+				  	</li>
 				</ul>
 			</div>
 			<div class="col-md-10">
-				<form class="form-inline" id="myform">
-				  	<div class="form-group">
-					    <label for="name">名称</label>
-					    <input type="text" class="form-control" id="name" name="name" placeholder="请输入商店名称" required="required">
-					</div>
-				  	<div class="form-group">
-				    	<label for="no">编码</label>
-				    	<input type="text" class="form-control" id="no" name="no" placeholder="请输入编码" required="required">
-				  	</div>
-				  	<div class="form-group">
-				    	<label for="parentName">上级类型</label>
-				    	<input type="hidden" name="parentId"/>
-				    	<select class="form-control" name="parentName">
-							<option value="==请选择==">请选择</option>
-						</select>
-				  	</div>
-				  	<button type="submit" class="btn btn-success btn-submit">提交</button>
-				</form>
+				<div class="row">
+					<a href="/a/dict/edit" class="btn btn-success">新建</a>
+				</div>
+				<table class="table mytable">
+					<tr>
+						<td>编号</td>
+						<td>名称</td>
+						<td>上级分类</td>
+						<td>操作</td>
+					</tr>
+				</table>				  	
 			</div>
 		</div>		
 	</div>

@@ -11,4 +11,9 @@
 		<result column="num" jdbcType="INTEGER" property="num" />
 		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
 	</resultMap>
+	
+	<select id="getCoupouAllList" resultMap="BaseResultMap">
+		SELECT c.vip_no, c.money, c.shop_type, d.name as "shop_name", c.coupon_no, c.num, c.create_time FROM coupon c
+		LEFT JOIN shop d ON c.shop_name = d.id
+	</select>
 </mapper>

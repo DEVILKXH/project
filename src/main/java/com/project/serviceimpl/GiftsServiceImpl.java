@@ -9,4 +9,9 @@ import com.project.service.GiftsService;
 
 @Service
 public class GiftsServiceImpl extends BaseServiceImpl<Gifts, GiftsMapper> implements GiftsService{
+
+	@Override
+	public int getCount(String gifts, String createTime) {
+		return mapper.getCount(gifts, createTime);
+	}
 }

@@ -2,21 +2,30 @@ package com.project.entity;
 
 import java.util.Date;
 
+import com.project.inner.base.annotation.ExcelColumn;
+import com.project.inner.base.annotation.ExcelTable;
 import com.project.inner.base.entity.BaseEntity;
 
+@ExcelTable(name = "整点抽表格导出")
 public class Coupon extends BaseEntity{
+	@ExcelColumn(name = "会员号", index = 1)
     private String vipNo;
 
+	@ExcelColumn(name = "消费金额", index = 2)
     private String money;
 
+	@ExcelColumn(name = "商店类型", index = 3)
     private String shopType;
 
+	@ExcelColumn(name = "店名", index = 4)
     private String shopName;
     
     private Integer couponNo;
 
+	@ExcelColumn(name = "张数", index = 6)
     private Integer num;
 
+	@ExcelColumn(name = "时间", index = 7)
     private Date createTime;
 
     public String getVipNo() {

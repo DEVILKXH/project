@@ -15,4 +15,9 @@ public class ShopRest extends BaseController<Shop, ShopService>{
 	public String index(){
 		return "shop/index";
 	}
+	
+	@RequestMapping(value = "/edit")
+	public String edit(){
+		return "shop/edit";
+	}
 }
