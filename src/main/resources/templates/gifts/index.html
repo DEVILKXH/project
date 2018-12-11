@@ -45,7 +45,9 @@
 					}
 				},
 				submitHandler: function(){
-					$submit("myform", '/a/gifts/insertSelective.do');
+					$submit("myform", '/a/gifts/insertSelective.do', function(res){
+						$("#gifts").val(res.object.gifts);
+					});
 					return false;
 				},
 				errorClass: "myerror",
@@ -88,6 +90,9 @@
 				  		<a href="/a/coupon">整点抽</a>
 				  	</li>
 				  	<li class="list-group-item">
+				  		<a href="/a/ticket">刮刮乐</a>
+				  	</li>
+				  	<li class="list-group-item">
 				  		<a href="/a/gifts">礼品领取</a>
 				  	</li>
 				  	
@@ -103,19 +108,8 @@
 					    <input type="text" class="form-control form-param" id="vipNo" name="vipNo" placeholder="请输入会员号" required="required">
 					</div>
 				  	<div class="form-group">
-				    	<label for="tel">电话号码</label>
-				    	<input type="tel" class="form-control form-param" id="tel" name="tel" placeholder="请输入电话号码">
-				  	</div>
-				  	<div class="form-group">
-				    	<label for="birthday">出生年月</label>
-				    	<input type="text" class="form-control form-param" id="birthday" name="birthday" placeholder="请选择出生年月" readonly="readonly" required="required">
-				  	</div>
-				  	<div class="form-group">
-				    	<label for="sex">性别</label>
-				    	<select class="form-control form-param" name="sex" id="sex">
-							<option value="男">男</option>
-						  	<option value="女">女</option>
-						</select>
+				    	<label for="gifts">礼物</label>
+				    	<input type="text" class="form-control form-param" id="gifts" name="gifts" required="required" readonly="readonly">
 				  	</div>
 				  	<button type="submit" class="btn btn-success btn-submit">提交</button>
 				</form>

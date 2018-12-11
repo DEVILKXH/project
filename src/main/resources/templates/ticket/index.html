@@ -23,6 +23,15 @@
 	<script type="text/javascript" src="/js/common.js"></script>
 
 	<script type="text/javascript">
+		function addCoupon(obj){
+			var html = $(obj).closest("#template").html();
+			html = "<div class='form-group coupon-no'>"+ html +"</div>";
+			$(html).insertBefore($(".btn-submit"));
+			$(".coupon-no:last input").val(obj.value);
+			$(".coupon-no:last input").attr("readonly", "true");
+			obj.value = ""
+		}
+	
 		function calcNum(){
 			var shopId = $("#shopName").val();
 			if(isNull(shopId)){
@@ -32,18 +41,13 @@
 			getEntity('/a/shop/selectOne.do', null, shopId, function(res){
 				var typeName = res.typeName;
 				var money = res.money;
-				var maxNum = parseInt(res.maxNum);
-				var couponMoney = $("#money").val();
+				var ticketMoney = $("#money").val();
 				if(isNull(shopId)){
 					return;
 				}
 				$("#shopType").val(typeName);
-				var num = Math.floor(couponMoney / money);
-				if(maxNum < num){
-					num = maxNum;
-				}
-				
-				$("#num").val(num);
+				var num = ticketMoney / money;
+				$("#num").val(Math.floor(num))
 			});
 		}
 		$(function(){
@@ -56,7 +60,20 @@
 					
 				},
 				submitHandler: function(){
-					$submit("myform", '/a/coupon/insertSelective.do');
+					var couponNo = [];
+					var $couponNo = $(".coupon-no input[name=couponNo]");
+					$couponNo.each(function(i, item){
+						couponNo.push(item.value);
+					});
+					var data = {
+						vipNo: $("#vipNo").val(),
+						shopName: $("#shopName").val(),
+						shopType: $("#shopType").val(),
+						couponNo: couponNo.join(";")
+					};
+					$submitByData(data, '/a/ticket/insertSelective.do', function(res){
+						setTimeout(function(){window.location.reload()}, 1000)
+					});
 					return false;
 				},
 				errorClass: "myerror",
@@ -101,10 +118,10 @@
 				  		<a href="/a/coupon">整点抽</a>
 				  	</li>
 				  	<li class="list-group-item">
-				  		<a href="/a/gifts">礼品领取</a>
+				  		<a href="/a/ticket">刮刮乐</a>
 				  	</li>
 				  	<li class="list-group-item">
-				  		<a href="/a/ticket">刮刮乐</a>
+				  		<a href="/a/gifts">礼品领取</a>
 				  	</li>
 				  	<li class="list-group-item">
 				  		<a href="/a/admin">报表导出</a>
@@ -118,10 +135,6 @@
 					    <input type="text" class="form-control form-param" id="vipNo" name="vipNo" placeholder="请输入商店名称" required="required">
 					</div>
 				  	<div class="form-group">
-				    	<label for="money">消费金额</label>
-				    	<input type="number" class="form-control form-param" id="money" name="money" placeholder="请输入满减金额" required="required">
-				  	</div>
-				  	<div class="form-group">
 				    	<label for="shopName">消费商店</label>
 				    	<select class="form-control form-param" name="shopName" id="shopName" required="required">
 							<option value="">请选择</option>
@@ -131,9 +144,10 @@
 				    	<label for="shopType">类型</label>
 				    	<input type="text" class="form-control form-param" name="shopType" id="shopType" required="required" readonly="readonly"/>
 				  	</div>
-				  	<div class="form-group">
-				    	<label for="num">张数</label>
-				    	<input type="text" class="form-control form-param" name="num" id="num" required="required" readonly="readonly"/>
+				  	
+				  	<div class="form-group" id="template">
+				    	<label for="couponNo">刮刮乐号</label>
+				    	<input type="text" class="form-control form-param" name="couponNo" placeholder="请输入刮刮乐号" onchange="addCoupon(this)">
 				  	</div>
 				  	
 				  	<button type="submit" class="btn btn-success btn-submit">提交</button>

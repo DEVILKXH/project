@@ -6,24 +6,25 @@ import com.project.inner.base.annotation.ExcelColumn;
 import com.project.inner.base.annotation.ExcelTable;
 import com.project.inner.base.entity.BaseEntity;
 
-@ExcelTable(name = "整点抽表格导出")
-public class Coupon extends BaseEntity{
+@ExcelTable(name = "刮刮乐表格导出")
+public class Ticket extends BaseEntity{
 	@ExcelColumn(name = "会员号", index = 1)
     private String vipNo;
 
-	@ExcelColumn(name = "消费金额", index = 2)
     private String money;
 
-	@ExcelColumn(name = "商店类型", index = 3)
+	@ExcelColumn(name = "商店类型", index = 2)
     private String shopType;
 
-	@ExcelColumn(name = "店名", index = 4)
+	@ExcelColumn(name = "店名", index = 3)
     private String shopName;
     
-	@ExcelColumn(name = "张数", index = 6)
     private Integer num;
+	
+    @ExcelColumn(name = "刮刮乐号", index = 4)
+	private String couponNo;
 
-	@ExcelColumn(name = "时间", index = 7)
+	@ExcelColumn(name = "时间", index = 5)
     private Date createTime;
 	
     public String getVipNo() {
@@ -74,4 +75,12 @@ public class Coupon extends BaseEntity{
         this.createTime = createTime;
     }
 
+	public String getCouponNo() {
+		return couponNo;
+	}
+
+	public void setCouponNo(String couponNo) {
+		this.couponNo = couponNo;
+	}
+    
 }

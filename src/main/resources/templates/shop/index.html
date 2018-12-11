@@ -45,6 +45,7 @@
 					var html="<tr>" +
 								"<td>"+ item.name +"</td>" +
 								"<td>"+ item.money +"</td>" +
+								"<td>"+ item.maxNum +"</td>" +
 								"<td>"+ (item.typeName || "") +"</td>" +
 								"<td>" +
 								"<a href='/a/shop/edit?id="+ item.id +"' class=\"btn btn-primary\">编辑</a>" +
@@ -83,6 +84,9 @@
 				  		<a href="/a/coupon">整点抽</a>
 				  	</li>
 				  	<li class="list-group-item">
+				  		<a href="/a/ticket">刮刮乐</a>
+				  	</li>
+				  	<li class="list-group-item">
 				  		<a href="/a/gifts">礼品领取</a>
 				  	</li>
 				  	
@@ -99,6 +103,7 @@
 					<tr>
 						<td>商店名称</td>
 						<td>满减金额</td>
+						<td>最多张数</td>
 						<td>类型</td>
 						<td>操作</td>
 					</tr>

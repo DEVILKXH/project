@@ -17,6 +17,8 @@ public class Shop extends BaseEntity{
 
     private String typeName;
 
+    private Integer maxNum;
+    
     public String getName() {
         return name;
     }
@@ -72,4 +74,13 @@ public class Shop extends BaseEntity{
     public void setTypeName(String typeName) {
         this.typeName = typeName == null ? null : typeName.trim();
     }
+
+	public Integer getMaxNum() {
+		return maxNum;
+	}
+
+	public void setMaxNum(Integer maxNum) {
+		this.maxNum = maxNum;
+	}
+    
 }

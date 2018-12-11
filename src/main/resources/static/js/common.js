@@ -124,3 +124,13 @@ function $submit(formName, url, callback){
 		})
 	}
 }
+
+
+function $submitByData(data, url, callback){
+	var _callback = callback || defaultCallback;
+	$post({
+		url: url,
+		data: data,
+		callback: _callback
+	})
+}

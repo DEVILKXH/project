@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.entity.Coupon;
 import com.project.entity.Gifts;
+import com.project.entity.Ticket;
 import com.project.inner.util.ExcelUtil;
 import com.project.service.CouponService;
 import com.project.service.GiftsService;
+import com.project.service.TicketService;
 
 @Controller
 @RequestMapping(value = "/a/admin")
@@ -21,9 +23,12 @@ public class AdminRest {
 
 	@Autowired
 	private HttpServletResponse response;
-	
+
 	@Autowired
 	private CouponService couponService;
+
+	@Autowired
+	private TicketService ticketService;
 	
 	@Autowired
 	private GiftsService giftsService;
@@ -41,13 +46,22 @@ public class AdminRest {
 		response.setHeader("Content-Disposition", "attachment;filename=\"" + java.net.URLEncoder.encode("礼品领取", "UTF-8") + ".xlsx" + "\" ");
 		wb.write(response.getOutputStream());
 	}
-	
+
 	@RequestMapping(value = "/exportCoupon.do")
 	public void exportCoupon() throws Exception{
 		List<Coupon> coupons = couponService.getCoupouAllList();
 		XSSFWorkbook wb = ExcelUtil.getWorkBook(coupons, Coupon.class);
 		response.setContentType("application/force-download");
 		response.setHeader("Content-Disposition", "attachment;filename=\"" + java.net.URLEncoder.encode("整点抽", "UTF-8") + ".xlsx" + "\" ");
+		wb.write(response.getOutputStream());
+	}
+	
+	@RequestMapping(value = "/exportTicket.do")
+	public void exportTicket() throws Exception{
+		List<Ticket> tickets = ticketService.getCoupouAllList();
+		XSSFWorkbook wb = ExcelUtil.getWorkBook(tickets, Ticket.class);
+		response.setContentType("application/force-download");
+		response.setHeader("Content-Disposition", "attachment;filename=\"" + java.net.URLEncoder.encode("刮刮乐", "UTF-8") + ".xlsx" + "\" ");
 		wb.write(response.getOutputStream());
 	}
 }

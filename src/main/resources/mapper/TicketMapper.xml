@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.project.mapper.CouponMapper">
-	<resultMap id="BaseResultMap" type="com.project.entity.Coupon">
+<mapper namespace="com.project.mapper.TicketMapper">
+	<resultMap id="BaseResultMap" type="com.project.entity.Ticket">
 		<id column="id" jdbcType="VARCHAR" property="id" />
 		<result column="vip_no" jdbcType="VARCHAR" property="vipNo" />
 		<result column="money" jdbcType="VARCHAR" property="money" />
 		<result column="shop_type" jdbcType="VARCHAR" property="shopType" />
 		<result column="shop_name" jdbcType="VARCHAR" property="shopName" />
+		<result column="coupon_no" jdbcType="INTEGER" property="couponNo" />
 		<result column="num" jdbcType="INTEGER" property="num" />
 		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
 	</resultMap>
 	
 	<select id="getCoupouAllList" resultMap="BaseResultMap">
-		SELECT c.vip_no, c.money, c.shop_type, d.name as "shop_name", c.num, c.create_time FROM coupon c
+		SELECT c.vip_no, c.money, c.shop_type, d.name as "shop_name", c.num, c.coupon_No, c.create_time FROM coupon c
 		LEFT JOIN shop d ON c.shop_name = d.id
 	</select>
 </mapper>

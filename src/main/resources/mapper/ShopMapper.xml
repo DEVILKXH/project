@@ -8,6 +8,7 @@
 		<result column="parent_id" jdbcType="VARCHAR" property="parentId" />
 		<result column="parent_name" jdbcType="VARCHAR" property="parentName" />
 		<result column="money" jdbcType="INTEGER" property="money" />
+		<result column="max_num" jdbcType="INTEGER" property="maxNum" />
 		<result column="type_id" jdbcType="VARCHAR" property="typeId" />
 		<result column="type_name" jdbcType="VARCHAR" property="typeName" />
 	</resultMap>
